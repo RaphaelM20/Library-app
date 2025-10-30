@@ -1,0 +1,208 @@
+/* General reset & base styles */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: #f6f7fb;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Main grid container */
+.container {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.header {
+  grid-column: 1 / -1; /* make it stretch full grid width */
+  background-color: #2a9d8f;
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 20px 0;
+  border-radius: 0; /* remove rounding */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 100vw; /* full viewport width */
+  margin-left: calc(-50vw + 50%); /* stretch across even when centered container */
+}
+
+/* Add Book section */
+.addBook {
+  text-align: center;
+}
+
+#addBookButton {
+  background-color: #264653;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#addBookButton:hover {
+  background-color: #1b2f3a;
+}
+
+/* Add Book form */
+#addBookForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto 0;
+  gap: 10px;
+}
+
+#addBookForm label {
+  align-self: flex-start;
+  font-weight: 500;
+}
+
+#addBookForm input[type="text"],
+#addBookForm input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#addBookForm input[type="checkbox"] {
+  transform: scale(1.3);
+}
+
+#addBookForm button {
+  background-color: #2a9d8f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 8px;
+}
+
+#addBookForm button:hover {
+  background-color: #23867c;
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
+  padding: 10px;
+}
+
+.book-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 260px;
+  height: 200px; /* 👈 makes it rectangular */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* keeps remove button at bottom */
+  padding: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-card h3 {
+  color: #264653;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.book-card p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+/*Remove button*/
+
+.book-card .remove-btn {
+  align-self: flex-end;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s ease;
+}
+
+.book-card .remove-btn:hover {
+  background-color: #c71c30;
+}
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: none; /* 👈 hide by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal.show {
+    display: flex;
+}
+
+/* The actual form box */
+.modal-content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Remove button on cards */
+.book-card button {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.book-card button:hover {
+  background-color: #c71c30;
+}

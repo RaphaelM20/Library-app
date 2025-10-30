@@ -22,6 +22,7 @@ function addBookToLibrary() {
     const newBook = new Book(bookTitle, bookAuthor, bookPages, readBook);
     myLibrary.push(newBook)
 
+    saveLibrary();
     displayLibrary();
 }
 
@@ -39,24 +40,65 @@ function displayLibrary() {
             <p><strong>Pages:</strong> ${book.pages}</p>
             <p><strong>Read:</strong> ${book.read ? '✅ Yes' : '❌ No'}</p>
             `
-        cardsContainer.append(card);
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.classList.add('remove-btn');
+
+        removeBtn.addEventListener('click', () => {
+            const index = myLibrary.findIndex(b => b.id === book.id);
+            if (index !== -1) {
+                myLibrary.splice(index, 1);
+            }
+
+            saveLibrary();
+            displayLibrary();
+        });
+        
+        card.appendChild(removeBtn);
+        cardsContainer.appendChild(card);
     }
 }
 
-//unhide form
+//local storage
 
-const bookButton = document.querySelector('#addBookButton')
+function saveLibrary() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+function loadLibrary() {
+    const stored = localStorage.getItem('myLibrary');
+    if (stored) {
+        const parsed = JSON.parse(stored);
+        myLibrary.length = 0;
+        parsed.forEach(book => myLibrary.push(book));
+    }
+}
+
+//
+
+const bookButton = document.querySelector('#addBookButton');
+const modal = document.querySelector('#formModal');
+const form = document.getElementById('addBookForm');
 
 bookButton.addEventListener('click', () => {
-    document.getElementById('addBookForm').hidden = false;
+    modal.classList.add('show');
 })
 
-//submit button to add and display library
+//close modal
+modal.addEventListener('click', (event) => {
+    if (event.target === modal){
+        modal.classList.remove('show');
+    }
+})
 
-document.getElementById('addBookForm').addEventListener('submit', (event) => {
+//handle form submission
+ form.addEventListener('submit', (event) => {
     event.preventDefault();
     addBookToLibrary();
-})
+    modal.classList.remove('show');
+    form.reset();
+ })
 
-
-
+//page load
+loadLibrary();
+displayLibrary();
