@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Library App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -15,19 +15,21 @@
         <div class="addBook">
             <button id="addBookButton">+ Add Book</button>
 
-            <div id="addBookForm" hidden>
+            <form id="addBookForm" hidden>
                 <label for="book_title">Title:</label>
-                <input type="text" id="book_title">
+                <input type="text" id="book_title" required>
 
                 <label for="book_author">Author:</label>
-                <input type="text" id="book_author">
+                <input type="text" id="book_author" required>
 
                 <label for="book_pages">Pages:</label>
-                <input type="number" id="book_pages">
+                <input type="number" id="book_pages" required>
 
                 <label for="book_read">Read:</label>
                 <input type="checkbox" id="book_read">
-            </div>
+
+                <button type="submit" id="submitBookButton">Submit</button>
+            </form>
         </div>
 
         <div class="cards">
